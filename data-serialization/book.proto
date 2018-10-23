@@ -1,0 +1,5 @@
+syntax = "proto2";
+message Book {
+     required string isbn = 1;
+     required string title = 2;
+}
