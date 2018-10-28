@@ -4,7 +4,8 @@ print('\n newlines and \t tabs')
 poem = """
 \tThe lovely word
 with logic so firmly planted
-cnanot discern \s the needs of lovenor comprehend passion from intution
+cannot discern \n the needs of love
+nor comprehend passion from intution
 and requires an explanation
 \n\t\twhere there is none.
 """
