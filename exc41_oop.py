@@ -9,11 +9,15 @@ PHRASES = {
     "class %%%(%%%):":
     "Make a class named %%% that is-a %%%.",
     "class %%%(object):\n\tdef __init__(self,***)":
-    "class %%%B has-a __init__ that take self and *** params",
+    "class %%% has-a __init__ that take self and *** params",
+    "class %%%(object):\n\tdef ***(self,@@@)":
+    "class %%% has-a function *** that take self and @@@ params",
     "*** = %%%()":
     "Set *** to an instance of class %%%.",
     "***.***(%%%)":
-    "From *** get the *** function,call it with params self,%%%"
+    "From *** get the *** function,call it with params self,%%%",
+    "***.*** = '***'":
+    "From *** get the *** attribute and set it to '***'."
 }
 if len(sys.argv) == 2 and sys.argv[1] == 'english':
     PHRASE_FIRST = True
@@ -33,7 +37,7 @@ def convert(snippet,phrase):
     results = []
     param_names = []
 
-    for i in range(0, snippet.count("%%%")):
+    for i in range(0, snippet.count("@@@")):
         param_count = random.randint(1,3)
         param_names.append(','.join(
             random.sample(WORDS,param_count)))
@@ -42,12 +46,14 @@ def convert(snippet,phrase):
         result = sentence[:]
 
         for word in class_names:
+            result = result.replace("%%%",word,1)
+
+        for word in other_names:
             result = result.replace("***",word,1)
+        for word in param_names:
+            result = result.replace("@@@",word,1)
 
-    for word in other_names:
-        result = result.replace("%%%",word,1)
-
-    results.append(result)
+        results.append(result)
 
     return results
 
@@ -56,22 +62,13 @@ try:
         snippets = list(PHRASES.keys())
         random.shuffle(snippets)
         for snippet in snippets:
-            print(snippet)
-            print('**********')
-            print(PHRASES)
-            exit(0)
             phrase = PHRASES[snippet]
-            print(PHRASES)
-            exit(0);
-            questions,answer = convert(snippet,phrase)
-
+            question,answer = convert(snippet,phrase)
             if PHRASE_FIRST:
                 question, answer = answer, question
-
             print(question)
-
             input('> ')
-            print(f"ANSWER: {answer}\n\m")
+            print(f"ANSWER: {answer}\n\n")
 
 except EOFError:
     print("\nbye")
