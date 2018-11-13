@@ -28,8 +28,17 @@ class Death(Scene):
 
 
 class CentralCorridor(Scene):
+    quips  = [
+        "You dead, You kinda  suck at this.",
+        "Your moom would be proud ... if she were smatter.",
+        "Such a loser",
+        "I have a small puppy that's better at this.",
+        "You're worse than you Dad's jokes."
+    ]
+
     def enter(self):
-        pass
+        print(Death.quips[randint(0,len(self.quips)-1)])
+        exit(0)
 
 
 class LaserWeaponArmory(Scene):
