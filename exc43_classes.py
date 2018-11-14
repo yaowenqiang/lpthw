@@ -24,10 +24,6 @@ class Engine(object):
 
 class Death(Scene):
     def __enter(self):
-        pass
-
-
-class CentralCorridor(Scene):
     quips  = [
         "You dead, You kinda  suck at this.",
         "Your moom would be proud ... if she were smatter.",
@@ -41,6 +37,28 @@ class CentralCorridor(Scene):
         exit(0)
 
 
+class CentralCorridor(Scene):
+    def enter(self):
+        print(dedent("""
+            The Gothons of Planet #25 have invaded your ship and 
+            Destroyed your entire crew.You are the last surviving
+            member and your last mission is to get the neutron destruct
+            bluw the ship up after getting into an escape pod.
+
+            You're running down the central corridor to the Weapons Armory 
+            when a Gothon jumps out. red scaly skin,dark grimy teeth,
+            and evil clown custom flowing around his hate 
+            filled body.He's blocking the door to the Armory and 
+            about to pull a weapon to blast you
+        """))
+
+        action = input('> ')
+        if action == 'shoot!':
+        print(dedent("""
+            Quick on the draw you yank out your blaster and fire 
+            it at the Gothon.His clown costume is flowing and 
+            oving around his body. which thrown off your aim.
+        """))
 class LaserWeaponArmory(Scene):
     def enter(self):
         pass
