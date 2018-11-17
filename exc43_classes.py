@@ -23,7 +23,7 @@ class Engine(object):
         current_scene.enter()
 
 class Death(Scene):
-    def __enter(self):
+
     quips  = [
         "You dead, You kinda  suck at this.",
         "Your moom would be proud ... if she were smatter.",
@@ -54,15 +54,81 @@ class CentralCorridor(Scene):
 
         action = input('> ')
         if action == 'shoot!':
-        print(dedent("""
-            Quick on the draw you yank out your blaster and fire 
-            it at the Gothon.His clown costume is flowing and 
-            oving around his body. which thrown off your aim.
-        """))
+            print(dedent("""
+                Quick on the draw you yank out your blaster and fire 
+                it at the Gothon.His clown costume is flowing and 
+                moving around his body. which thrown off your aim.
+                Your laser hits his costume but missses him entirely.
+                This completely ruins his brand new costume his mother
+                thought him,which makes him fly into an insane rage
+                and blast you repeatedly in the face until you are 
+                dead.Then he eats you.
+            """))
+            return "death"
+        elif action == 'dodge!': # 闪躲
+            print(dedent("""
+                Like a world class boxer you dodge.weave,
+                slip and slide right as the Gothon's blaster cranks a 
+                laser past your head.In the middle of your artful dodge 
+                your foot slips and you bang your head onthe metal wall
+                and pass out.Your wake up shortly after only to die as 
+                the Gothon stomps on your head and eats you
+            """))
+            return "death"
+        elif aciton == "tell a joke":
+            print(dedent("""
+                Lucky for you they made you learn Gothon insults in the
+                academy.You tell the one Gothon joke you know for 
+                fvgf mebhaq gur ubhfr.The Gothon stops.tries not to 
+                laugh.then busts out laughing and can't move.
+                While he's laughing you run up and shoot him square in
+                the head putting him down.then jump through the Weapon 
+                Armory door.
+            """))     
+            return "laser_weapon_armory"
+        else:
+            print("DOES NOT COMPUTE!")
+            return "central_corridor"
+            
 class LaserWeaponArmory(Scene):
-    def enter(self):
-        pass
 
+    def enter(self):
+        print(dedent("""
+            You do a dive roll into the Weaon Armory.crouch and scan
+            the room for more Gothons that might be hiding.It's dead
+            quiet,too quiet.You stand up and run to the far side of
+            the room and find the neutron bomb in the container.
+            There's a keypad lock on the box and you need the code to 
+            get the bomb out.If you get the code wrong 10 times then 
+            the lock closes forever and you can't get the bomb.The 
+            code is 3 digits.
+            """))     
+        code = f"{randint(1,9)}{randint(1,9)}{randint(1,9)}"
+        guess = input("[keypad]> ")
+        guesses = 0
+
+        while guess != code and guesses < 10:
+            print("BZZZZEDDD!")
+            guesses += 1
+            guess = input("[keypad]> ")
+
+        
+        if guess == code:
+            print(dedent("""
+                The container clicks open and the seal breaks.letting
+                gus out. You grab the neatron  bomb and run as fast as 
+                you can to the bridge where you must place it in 
+                the right spot.
+            """))
+            return "the_bridge"
+        else:
+            print(dedent("""
+                The lock buzzes one last time and then you hear a 
+                sickening melting sound as the mechanism is fuses 
+                togher .YOU decide to sit there. and finally the 
+                gothons blow up the ship from their ship and you die.
+            """))
+            return "death"
 
 class EscapePod(Scene):
     def enter(self):
