@@ -75,7 +75,7 @@ class CentralCorridor(Scene):
                 the Gothon stomps on your head and eats you
             """))
             return "death"
-        elif aciton == "tell a joke":
+        elif action == "tell a joke":
             print(dedent("""
                 Lucky for you they made you learn Gothon insults in the
                 academy.You tell the one Gothon joke you know for 
