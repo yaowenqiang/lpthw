@@ -8,6 +8,6 @@ class Room():
         return self.paths.get(direction, None)
 
     def add_paths(self, paths):
-        return paths.update(paths)
+        return self.paths.update(paths)
 
 
