@@ -40,7 +40,7 @@ def post_article(conn, user, title, link):
     return article_id
 
 
-def get_article(conn, page, order="score:"):
+def get_articles(conn, page, order="score:"):
     start = (page - 1) * ARTICLES_PER_PAGE
     end = start + ARTICLES_PER_PAGE - 1
 
@@ -55,6 +55,29 @@ def get_article(conn, page, order="score:"):
 
     return articles
 
+def add_remove_groups(conn, article_id, to_add = [], to_remove=[]):
+    article = "article:" + article_id
+    for group in to_add:
+        conn.sadd('group:' + group, article)
+
+    for group in to_remove:
+        conn.srem('group:' + group, article)
+
+
+def get_group_article(conn,group,page, order="score:"):
+    key = order + group
+
+    if not conn.exists(key):
+        conn.zinterstore(key,
+                         ["group:"+ group, order],
+                          aggregate="max"
+                          )
+
+        conn.expire(key, 40)
+
+    return get_articles(conn, page, key)
+        
+
 
 
 redis = Redis()
@@ -63,8 +86,11 @@ user = 1
 article = 1
 post_article(redis, user, 'title', 'link')
 article_vote(redis, user, article)
-articles = get_article(redis, 1)
-for article in articles:
-    print(article)
+articles = get_articles(redis, 1)
+
+#for article in articles:
+#    print(article)
+
+get_group_article(redis, 'test',1)
 
 
