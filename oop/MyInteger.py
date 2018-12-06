@@ -19,3 +19,9 @@ print(i.get_val())
 
 i.set_val('hi')
 print(i.get_val())
+i.val = 2
+print(i.get_val())
+i.val = 'hello'
+print(i.get_val())
+
+print(i.set_val(1))
