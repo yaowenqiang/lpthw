@@ -1,5 +1,5 @@
 from multiprocessing import Process
-from multiprocessing import Queue
+from multiprocessing import JoinableQueue
 import random
 def make_tuple(queue):
     num = random.randint(1,9)
@@ -17,7 +17,7 @@ def make_string(queue):
     queue.put(result)
 
 if __name__ == '__main__':
-    queue = Queue()
+    queue = JoinableQueue()
     
     p1 = Process(target=make_tuple, args=(queue,))
     p2 = Process(target=make_string, args=(queue,))
