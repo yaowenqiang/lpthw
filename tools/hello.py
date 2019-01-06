@@ -1,0 +1,2 @@
+@py pythonfilepath.py %*
+@pause
