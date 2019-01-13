@@ -8,7 +8,9 @@ def check_server(address, port, resource):
         resource = '/' + resource
 
     # request_string = b"GET {resource} HTTP/1.1\r\nHost : {address}\r\n\n"
-    request_string = b"GET / HTTP/1.1\n\n"
+    # the HTTP/1.1 need a host header, but 1.0 does not 
+    # the newline should use \r\n not \n
+    request_string = b"GET / HTTP/1.0\r\n\r\n"
 
     print("HTTP request:")
     print(f"|||{request_string}|||")
@@ -29,7 +31,7 @@ def check_server(address, port, resource):
         print(f"Closing the connection ")
         s.close()
 
-    lines = rsp.splitlines()
+    lines = rsp.decode('utf-8').splitlines()
 
     print(f"First line of HTTP response : {lines[0]}")
 
