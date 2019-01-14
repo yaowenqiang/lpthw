@@ -4,11 +4,11 @@ import re
 
 def check_server(address, port, resource):
     # build up HTTP request string
-    if not resource.startswith('/') :
+    if not resource.startswith('/'):
         resource = '/' + resource
 
     # request_string = b"GET {resource} HTTP/1.1\r\nHost : {address}\r\n\n"
-    # the HTTP/1.1 need a host header, but 1.0 does not 
+    # the HTTP/1.1 need a host header, but 1.0 does not
     # the newline should use \r\n not \n
     request_string = b"GET / HTTP/1.0\r\n\r\n"
 
@@ -52,4 +52,15 @@ def check_server(address, port, resource):
         return False
 
 if __name__ == '__main__':
-    check_server('localhost',80,'/')
+    from optparse import OptionParser
+    parser = OptionParser()
+    parser.add_option('-a', '--address', dest='address', default='localhost', help="ADDRESS for server", metavar="ADDRESS")
+    parser.add_option('-p', '--port', dest='port', type="int", default=80, help="PORT  for server", metavar="PORT")
+    parser.add_option('-4', '--resource', dest='resource', default="index.html", help="RESOURCE to check", metavar="RESOURCE")
+    (options, args) = parser.parse_args()
+
+    print(f"Options {options}, args: {args}")
+    check = check_server(options.address, options.port, options.resource)
+    print(f"Check server returned : {check}")
+
+    sys.exit(not check)
