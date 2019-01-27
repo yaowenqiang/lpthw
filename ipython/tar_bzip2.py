@@ -5,4 +5,7 @@ tar.close()
 
 tar = tarfile.open('test.tar.bzip2','r|bz2')
 tar.list()
-
+print(tar.name)
+print(tar.getnames())
+print(tar.members)
+tar.extractall()
