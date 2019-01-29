@@ -53,7 +53,7 @@ class OpSysType(object):
 
 def fingerprint():
     type = OpSysType()
-    print(type.queryOS())
+    return type.queryOS()
 
 if __name__ == '__main__':
     fingerprint()
