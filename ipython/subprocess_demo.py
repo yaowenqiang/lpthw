@@ -13,3 +13,13 @@ subprocess.run(['ping','-c 10','baidu.com'],
                        # shell=True, 
                        # stdout=open('/dev/null','w'),
                        stderr=subprocess.STDOUT)
+
+p = subprocess.Popen('ls -lh', 
+                       shell=True, 
+                       stdout=subprocess.PIPE)
+
+out = p.stdout.readlines()
+
+for line in out:
+    print(line.decode('utf-8').strip())
+
