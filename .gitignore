@@ -1,2 +1,7 @@
 *.swp
 *.pyc
+*.py~
+*.tmp
+*.db
+*.lock
+*.log
