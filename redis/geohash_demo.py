@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import redis
 client = redis.StrictRedis(host='localhost', port=637)
 client.delete('company')
@@ -27,3 +28,4 @@ print(client.geohash('company', 'juejin'))
 # 查找对应坐标
 # curl https://geohash.org/wx4gd94yjn0
 
+print(client.georadiusbymember('company', 'ireader', 20, 'km',count=3, sort="DESC"))
