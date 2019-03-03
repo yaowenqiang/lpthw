@@ -29,3 +29,7 @@ print(client.geohash('company', 'juejin'))
 # curl https://geohash.org/wx4gd94yjn0
 
 print(client.georadiusbymember('company', 'ireader', 20, 'km',count=3, sort="DESC"))
+print(client.georadiusbymember('company', 'ireader', 20, 'km',count=3, sort="DESC",withdist=True, withcoord=True, withhash=True))
+
+# 查找附近的
+print(client.georadius('company', 116.514202, 39.905409, 20, unit='km', withdist=True, withcoord=True, withhash=True, count=3, sort='DESC' ))
