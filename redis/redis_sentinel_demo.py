@@ -3,9 +3,10 @@ import redis
 
 from redis.sentinel import Sentinel
 
-sentinel = Sentinel([('192.168.10.10',5001),
-                    ('192.168.10.11',5001),
-                    ('192.168.10.12',5001),
+sentinel = Sentinel([('localhost',26376),
+                    ('localhost',26377),
+                    ('localhost',26378),
+                    ('localhost',26379),
                      ],socket_timeout=0.5)
 
 master = sentinel.discover_master('mymaster')
