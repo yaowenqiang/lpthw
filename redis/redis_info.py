@@ -18,3 +18,6 @@ print(client.info('memory')['used_memory_peak_human'])
 
 print(client.info('memory')['used_memory_lua_human'])
 
+print(client.info('replication'))
+
+print(client.info('sync'))
