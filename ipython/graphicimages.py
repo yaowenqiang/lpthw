@@ -2,10 +2,11 @@ import gdchart
 
 import shelve
 
-shelve_file  = shelve.open('access.s')
+shelve_file  = shelve.open('/var/log/apache2/access.log.1')
 
 items_list = [(i[0],i[0]) for i in shelve_file.items()]
 
+print(items_list)
 items_list.sort()
 bytes_sent = [i[0] for i in tems_list]
 # ip_addres = [(i[0],i[0]) for i in shelve_file.items()]
